@@ -1,10 +1,10 @@
 import React from "react";
-import { SwipeableDrawer, Divider, List, ListItem, ListItemText, IconButton, ListItemSecondaryAction } from "@material-ui/core";
+import { SwipeableDrawer, List, ListItem, ListItemText, IconButton, ListItemSecondaryAction } from "@material-ui/core";
 import { withStyles } from '@material-ui/core/styles';
 import { NavigateNext } from "@material-ui/icons";
 import PropTypes from "prop-types";
 
-const Drawer = ({ toggleDrawer, open, classes, yesterday, setTasksDate }) => {
+const Drawer = ({ toggleDrawer, open, classes, yesterday, setTasksDate, currentDate }) => {
     return (
         <SwipeableDrawer
             open={open}
@@ -16,21 +16,24 @@ const Drawer = ({ toggleDrawer, open, classes, yesterday, setTasksDate }) => {
                 role="button"
                 onClick={_ => toggleDrawer(false)}
                 onKeyDown={_ => toggleDrawer(false)}
-                style={{ width: 300 }}
+                style={{ width: 250 }}
             >
                 <div className={classes.list}>
                     <List>
-                        <ListItem>
-                            <ListItemText
-                                primary={yesterday}
-                                secondary={false ? 'Secondary text' : null}
-                            />
-                            <ListItemSecondaryAction>
-                                <IconButton onClick={_ => { setTasksDate(yesterday) }}>
-                                    <NavigateNext />
-                                </IconButton>
-                            </ListItemSecondaryAction>
-                        </ListItem>
+                        {
+                            currentDate !== yesterday &&
+                            <ListItem>
+                                <ListItemText
+                                    primary={yesterday}
+                                    secondary={false ? 'Secondary text' : null}
+                                />
+                                <ListItemSecondaryAction>
+                                    <IconButton onClick={_ => { setTasksDate(yesterday) }}>
+                                        <NavigateNext />
+                                    </IconButton>
+                                </ListItemSecondaryAction>
+                            </ListItem>
+                        }
                     </List>
                 </div>
 
