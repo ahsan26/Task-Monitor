@@ -139,7 +139,7 @@ class App extends Component {
 					?
 					date
 					:
-					`${currentDateAndTimeRef.getDate()}-${currentDateAndTimeRef.getMonth()}-${currentDateAndTimeRef.getFullYear()}`
+					`${currentDateAndTimeRef.getDate()}-${currentDateAndTimeRef.getMonth()+1}-${currentDateAndTimeRef.getFullYear()}`
 			});
 			if (date) this.setState({ showTheCurrentDateBTN: true });
 			else this.setState({ showTheCurrentDateBTN: false });
@@ -157,7 +157,7 @@ class App extends Component {
 		const today = new Date();
 		let yesterday = new Date(today);
 		yesterday.setDate(today.getDate() - 1);
-		yesterday = `${yesterday.getDate()}-${yesterday.getMonth()}-${yesterday.getFullYear()}`;
+		yesterday = `${yesterday.getDate()}-${yesterday.getMonth()+1}-${yesterday.getFullYear()}`;
 		return (
 			<div className={classes.root}>
 				<AppBar position="static" style={{ backgroundColor: '#27ae60' }}>
